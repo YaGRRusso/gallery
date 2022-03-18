@@ -1,5 +1,13 @@
-export default function App() {
+import * as C from './App.styles'
+
+const App = () => {
   return (
-    <div>Ola Mundo</div>
+    <C.Body>
+      <C.Container>
+        <h1>React Gallery</h1>
+      </C.Container>
+    </C.Body>
   )
 }
+
+export default App
