@@ -11,7 +11,7 @@ export const Body = styled.div`
 
 export const Container = styled.div`
     width: 95vw;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 30px 0;
     text-align: center;
@@ -20,6 +20,31 @@ export const Container = styled.div`
         font-size: 2.5rem;
         margin-bottom: 50px;
     }
+`
+
+export const UploadForm = styled.form`
+  background-color: #3d3f43;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  input[type=submit]{
+    background-color: #756df4;
+    border: 0;
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    margin: 0 20px;
+    cursor: pointer;
+
+    :hover{
+      opacity: 0.85;
+    }
+  }
 `
 
 const rotate = keyframes`
@@ -34,8 +59,8 @@ const rotate = keyframes`
 
 export const Warning = styled.div`
     div{
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       border-radius: 999px;
       border: 3px solid ${secondaryColor};
       border-bottom: 3px solid ${primaryColor};
@@ -45,8 +70,8 @@ export const Warning = styled.div`
 `
 
 export const ImageSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
 `
