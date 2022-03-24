@@ -8,7 +8,7 @@ export const getAll = async () => {
     let list: PhotoType[] = []
 
     const imagesFolder = ref(storage, 'images')
-    const photoList = await await (listAll(imagesFolder))
+    const photoList = await (listAll(imagesFolder))
 
     for (let i in photoList.items) {
         let photoUrl = await (getDownloadURL(photoList.items[i]))
