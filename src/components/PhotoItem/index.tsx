@@ -19,11 +19,13 @@ export const ImagesDisplay = ({ data, deleteFunction }: Props) => {
 
     return (
         <C.Display>
-            <div>
+            <div className='buttonsArea'>
                 <img src={DeleteImg} alt="Excluir" onClick={() => handleDeleteItem()} />
                 <img src={ZoomImg} alt="Baixar" onClick={() => handleZoomItem()} />
             </div>
-            <img src={data.url} alt={data.name} />
+            <div className="imgArea">
+                <img src={data.url} alt={data.name} />
+            </div>
             <p>{data.name}</p>
         </C.Display>
     )

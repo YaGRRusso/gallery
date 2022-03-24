@@ -28,13 +28,20 @@ export const insert = async (file: File) => {
         let randomName = v4()
         let newFile = ref(storage, `images/${randomName}`)
 
-        let upload = await uploadBytes(newFile, file)
-        let photoUrl = await getDownloadURL(upload.ref)
 
-        return {
-            name: upload.ref.name,
-            url: photoUrl
-        } as PhotoType
+        try {
+            let upload = await uploadBytes(newFile, file)
+            let photoUrl = await getDownloadURL(upload.ref)
+
+            return {
+                name: upload.ref.name,
+                url: photoUrl
+            } as PhotoType
+
+        } catch {
+            return new Error('Usuário não tem permissão!')
+        }
+
 
     } else {
         return new Error('Arquivo inválido!')
@@ -43,5 +50,9 @@ export const insert = async (file: File) => {
 
 export const deletePhoto = async ({ url }: PhotoType) => {
     const deleteFile = ref(storage, url);
-    await deleteObject(deleteFile)
+    try {
+        await deleteObject(deleteFile)
+    } catch {
+        return false
+    }
 }

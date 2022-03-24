@@ -72,6 +72,14 @@ export const Warning = styled.div`
 export const ImageSection = styled.div`
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+
+  @media (max-width: 860px){
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  @media (max-width: 540px){
+    grid-template-columns: 1fr;
+  }
 `

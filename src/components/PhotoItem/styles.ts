@@ -6,20 +6,20 @@ export const Display = styled.div`
     padding: 10px;
     position: relative;
 
-    div{
+    .buttonsArea{
         position: absolute;
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-left: -10px;
-        padding-right: 20px;
 
         img{
             margin: 5px 15px;
             background-color: #756df4dd;
             padding: 1px;
             cursor: pointer;
+            border-radius: 5px;
 
             :hover{
                 opacity: 0.85;
@@ -27,9 +27,16 @@ export const Display = styled.div`
         }
     }
 
-    img {
-        max-width: 100%;
-        border-radius: 3px;
+    .imgArea{
+        height: 350px;
+        
+        img{
+            border-radius: 5px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
     }
 
     p{

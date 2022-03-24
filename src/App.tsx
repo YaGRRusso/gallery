@@ -20,35 +20,43 @@ const App = () => {
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    let photoList = [...photos]
     const formData = new FormData(e.currentTarget);
-    const file = formData.get('image') as File
+    const files = formData.getAll('image') as File[]
 
-    if (file && file.size > 0) {
-      setLoading(true)
-      let result = await Photos.insert(file)
-      setLoading(false)
+    for (let i in files) {
+      if (files[i] && files[i].size > 0) {
+        setLoading(true)
+        let result = await Photos.insert(files[i])
+        setLoading(false)
 
-      if (result instanceof Error) {
-        alert(result.message)
-      } else {
-        let photoList = [...photos]
-        photoList.push(result)
-        setPhotos(photoList)
+        if (result instanceof Error) {
+          alert(result.message)
+        } else {
+          photoList.push(result)
+          console.log(photoList)
+        }
       }
     }
+
+    setPhotos(photoList)
   }
 
   const handleDeleteItem = async (data: PhotoType) => {
     setLoading(true)
-    await Photos.deletePhoto(data)
+    const res = await Photos.deletePhoto(data)
     setLoading(false)
 
-    let photoList = photos.filter(item => {
-      if (item.url !== data.url) {
-        return data
-      }
-    })
-    setPhotos(photoList)
+    if (res) {
+      let photoList = photos.filter(item => {
+        if (item.url !== data.url) {
+          return data
+        }
+      })
+      setPhotos(photoList)
+    } else {
+      alert('Usuário não tem permissão!')
+    }
   }
 
   return (
@@ -57,7 +65,7 @@ const App = () => {
         <h1>React Gallery</h1>
 
         <C.UploadForm method='POST' onSubmit={handleFormSubmit}>
-          <input type="file" name="image" />
+          <input type="file" name="image" multiple />
           <input type="submit" />
         </C.UploadForm>
 
