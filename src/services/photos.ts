@@ -52,6 +52,7 @@ export const deletePhoto = async ({ url }: PhotoType) => {
     const deleteFile = ref(storage, url);
     try {
         await deleteObject(deleteFile)
+        return true
     } catch {
         return false
     }
